@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700');
+/* 
+red: #ff6f56
+pink: #FFE7E3
+darkpink: #ffded8
+blue: #00155c */
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px; 
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace; 
+  color: #00155c;
+  background-color: #FFE7E3;
+}
+/* Text */
+pre {
+  font-family: 'Roboto Mono', monospace; 
+  display: inline;
+}
+h1, h2, h3, h4 {
+  font-weight: 500;
+}
+h2 {
+  font-size: 3rem;
+  padding: 0;
+  margin: 0;
+  line-height: 4rem;
+}
+h3 {
+  font-size: 2.4rem;
+  line-height: 4rem;
+  margin: 0;
+}
+.red-text {
+  color: #ff6f56;
+}
+h4, p {
+  font-size: 2rem;
+  line-height: 2.8rem;
+  margin-top: 0;
+}
+p {
+  margin: 0;
+}
+
+/* Layout */
+[class*="col"] {
+  margin: 2rem; 
+  max-width: 32rem;
+  width: 100%;
+}
+.col-1 {
+  max-width: 32rem; 
+  width: 100%;
+}
+.flexbox {
+  display: flex;
+  margin: auto;
+  margin-bottom: 10rem;
+  max-width: 36rem;
+}
+.wrap {
+  flex-wrap:wrap;
+}
+header .col-1 {
+  width: auto;
+}
+.title div {
+    margin: 2rem;
+}
+/* Images */
+.smiley {
+  width: 5rem;
+  margin-top: 1.2rem;
+}
+
+/* Media queries */
+
+@media only screen and (min-width: 720px) {
+  h2 {
+    font-size: 5.6rem;
+    line-height: 6.8rem;
+  }
+  .flexbox {
+    max-width: 72rem;
+    margin-bottom: 15rem;
+  }
+  [class*="col"] {
+    max-width: none;
+    height: 32rem;
+  }
+  .col-1 { width: 32rem; }
+  header .col-1 {
+    width: 32rem;
+  }
+  .col-2 { width: 68rem; }
+  .smiley { height: 100%; width: auto;}
+}
+@media only screen and (min-width: 1080px) {
+  .flexbox {
+    max-width: 108rem;
+  }
+  .title div {
+    margin-left:38rem;
+  }
+}
+@media only screen and (min-width: 1440px) {
+  .flexbox {
+    max-width: 144rem;
+    margin: auto;
+    margin-bottom: 20rem;
+  }
+}
+/* Animation */
+@keyframes animateShape {
+  0% {
+      d: path('M144.768148,201.654224 C218.102636,168.884445 245.726562,141.210938 237.867188,95.2201468 C230.007813,49.2293561 214.410156,30.1640625 185.601562,12.2617188 C156.792969,-5.640625 15.8205666,-20.2431916 1.58920807,95.2201468 C-12.6421505,210.683485 71.4336603,234.424003 144.768148,201.654224 Z');
+  }
+  25% {
+      d: path('M127.424919,265.34534 C200.759406,232.575561 263.060774,204.186898 252.91159,139.581548 C242.762405,74.9761979 196.122764,102.833329 127.424919,30.2630463 C58.7270734,-42.3072364 16.169606,24.1182093 1.93824743,139.581548 C-12.2931111,255.044886 54.0904309,298.115119 127.424919,265.34534 Z');
+  }
+  50% {
+      d: path('M144.768148,201.654224 C218.102636,168.884445 245.726562,141.210938 237.867188,95.2201468 C230.007813,49.2293561 214.410156,30.1640625 185.601562,12.2617188 C156.792969,-5.640625 15.8205666,-20.2431916 1.58920807,95.2201468 C-12.6421505,210.683485 71.4336603,234.424003 144.768148,201.654224 Z');
+  }
+  75% {
+      d: path('M166.951752,249.513876 C248.06894,240.326376 234.061127,174.115439 215.990815,137.771689 C197.920502,101.427939 249.825369,52.2091887 215.990815,15.2873137 C182.15626,-21.6345613 -25.5573317,7.71979474 2.61908521,109.929335 C30.7955021,212.138876 85.8345646,258.701376 166.951752,249.513876 Z');
+  }
+  100% {
+      d: path('M144.768148,201.654224 C218.102636,168.884445 245.726562,141.210938 237.867188,95.2201468 C230.007813,49.2293561 214.410156,30.1640625 185.601562,12.2617188 C156.792969,-5.640625 15.8205666,-20.2431916 1.58920807,95.2201468 C-12.6421505,210.683485 71.4336603,234.424003 144.768148,201.654224 Z');
+  }
+}
+#path-3 {
+    animation: animateShape 20s infinite ;
+}
+.path {
+  animation: animateShape 20s infinite;
+}
+
+@keyframes drive {
+  100% { background-position: 100% 0% }
+}
+#longboard {
+  animation: drive 3s linear infinite;
+
+}

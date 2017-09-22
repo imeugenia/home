@@ -1,0 +1,98 @@
+{
+    "textPosts": [
+        {
+            "header": "What I do",
+            "text": "In everydays life I design and code user interfaces for websites and web apps. I have tried my hand in marketing and event management as well.",
+            "order": 1,
+            "col": 1,
+            "bg": false
+        },{
+            "pretext": "iKnow ",
+            "text": "helps me build and design cool web things. I have also used Bootstrap, WordPress and jQuery.",
+            "order": 3,
+            "col": 1,
+            "bg": false
+        },{
+            "header": "What I value",
+            "text": "Collaboration and communication. I have launched Google Developer Group in my city and I organize tech events.",
+            "order": 6,
+            "col": 1,
+            "bg": false
+        },{
+            "quote": "“It is going to be a cool quote”",
+            "order": 7,
+            "col": 2,
+            "bg": true
+        },{
+            "header": "What I wish",
+            "text": "Collaboration and communication. I have launched Google Developer Group in my city and I organize tech events.",
+            "order": 8,
+            "col": 1,
+            "bg": false
+        }
+    ],
+    "code": 
+        {
+            "header": "iKnow",
+            "text": [
+                "JavaScript",
+                "React",
+                "HTML",
+                "CSS(SASS)",
+                "Sketch" 
+            ],
+            "order": 2,
+            "bg": true,
+            "col": 1   
+        }
+    ,
+    "pics": [
+        {
+            "alt": "Jevgenija Zigisova",
+            "link": "/static/media/jevgenija_sm.jpg",
+            "order": 5,
+            "col": 1
+        }
+    ],
+    "projects": [
+        {
+            "title": "Offline first todo app",
+            "link": "https://github.com/jevgenijazigisova/little-shoppy-app",
+            "year": 2017,
+            "text": "a progressive (offline first) web app for creating and managing shopping lists or any other todo lists, built with Create React App."
+        },
+        {
+            "title": "Frontend web developer at design agency Norrskog",
+            "year": 2016,
+            "text": "Developed responsive web pages. Worked on UI design, as well as graphic design."
+        },
+        {
+            "title": "Tezaurs dictionary",
+            "link": "https://github.com/jevgenijazigisova/tezaurs",
+            "year": 2017,
+            "text": "Frontend developed for Latvian language dictionary Tezaurs"
+        },
+        {
+            "title": "Creative industries’ meetup Heyday",
+            "link": "http://heydaylatvia.com/",
+            "year": 2016,
+            "text": "My first website for social creative industries' project Heyday, co-founded by me."
+        },
+        {
+            "title": "Marketing consulting company Inextra web page",
+            "link": "http://inextra.eu/",
+            "year": 2017,
+            "text": "UI design and frontend development with WordPress CMS integration for a website of marketing solution company Inextra."
+        },
+        {
+            "title": "Frontend developer at software company Stream Labs",
+            "year": 2017,
+            "text": "Worked on a customer support page's frontend using React. Collaborated on a UI/UX design."
+        }
+    ],
+    "contacts": {
+        "email": "jevgenijazigisova@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/jevgenija-zigisova-20810388/",
+        "twitter": "https://twitter.com/jevgenijazi" 
+    }
+}
