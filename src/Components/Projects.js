@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import Title from './Title'
 import '../index.css'
 import posts from '../data/posts.json'
+import { fetchProjects } from '../actions/index'
+import { connect } from 'react-redux'
 
 
 class Projects extends Component {
+    componentWillMount() {
+        this.props.fetchProjects()
+    }
     render() {
         const title = "My projects and experience"
-        const projects = posts.projects
+        const projects = this.props.projects.map( item => {
+            return item.fields
+        })
         return (
             <section>
                 <Title title={title}/>
@@ -44,4 +51,9 @@ class Projects extends Component {
     }
 }
 
-export default Projects
+// export default Projects
+
+function mapStateToProps(state) {
+    return { projects: state.data.projects }
+}
+export default connect(mapStateToProps, { fetchProjects })(Projects)

@@ -1,7 +1,9 @@
-import axios from 'axios'
 const contentful = require('contentful')
 
 export const FETCH_POSTS = 'FETCH_POSTS'
+export const FETCH_PROJECTS = 'FETCH_PROJECTS'
+export const FETCH_CODE = 'FETCH_CODE'
+export const FETCH_PICS = 'FETCH_PICS'
 
 
 const API_BASE_URL = 'https://cdn.contentful.com'
@@ -17,11 +19,50 @@ export function fetchPosts() {
   const request = client.getEntries({
     'content_type': 'card'
   })
-  .then(function (entries) {
-      return entries
+  .then(entries => {
+    return entries  
   })
   return {
     type: FETCH_POSTS,
+    payload: request
+  }
+}
+
+export function fetchProjects() {
+  const request = client.getEntries({
+    'content_type': 'projects'
+  })
+  .then(entries => {
+    return entries  
+  })
+  return {
+    type: FETCH_PROJECTS,
+    payload: request
+  }
+}
+
+export function fetchCode() {
+  const request = client.getEntries({
+    'content_type': 'code'
+  })
+  .then(entries => {
+    return entries  
+  })
+  return {
+    type: FETCH_CODE,
+    payload: request
+  }
+}
+
+export function fetchPics() {
+  const request = client.getEntries({
+    'content_type': 'pics'
+  })
+  .then(entries => {
+    return entries  
+  })
+  return {
+    type: FETCH_PICS,
     payload: request
   }
 }
