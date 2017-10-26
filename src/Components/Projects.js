@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Title from './Title'
 import '../index.css'
-import posts from '../data/posts.json'
 import { fetchProjects } from '../actions/index'
 import { connect } from 'react-redux'
 
@@ -19,31 +18,38 @@ class Projects extends Component {
             <section>
                 <Title title={title}/>
                 <div className="flexbox wrap">
-                    {projects.map( item => {
+                    {
+                        projects.map( item => {
                         
-                        return item.link ? (
-                            <div className="col-1" 
+                            return item.link ? (
+                                <div className="col-1" 
+                                        key={item.title}>
+                                    <h4>
+                                        <a href={item.link} target="_blank">
+                                            <span className="red-text">{item.title}
+                                            </span>
+                                        </a><br/>
+                                        {item.year}
+                                    </h4>
+                                    <p>{item.text}</p>
+                                </div>
+                                
+                            ) : (
+                                
+                                <div 
+                                    className="col-1" 
                                     key={item.title}>
-                                <h4>
-                                    <a href={item.link} target="_blank">
-                                        <span className="red-text">{item.title}
-                                        </span>
-                                    </a><br/>
-                                    {item.year}</h4>
-                                <p>{item.text}</p>
-                            </div>
-                            
-                        ) : (
-                            
-                            <div className="col-1" 
-                                    key={item.title}>
-                                <h4><span className="red-text">{item.title}
-                                    </span><br/>
-                                    {item.year}</h4>
-                                <p>{item.text}</p>
-                            </div>
-                        )
-                    })}
+                                    <h4>
+                                        <span className="red-text">
+                                        {item.title}
+                                        </span><br/>
+                                        {item.year}
+                                    </h4>
+                                    <p>{item.text}</p>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </section>
             

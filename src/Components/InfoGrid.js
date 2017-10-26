@@ -1,20 +1,41 @@
 import React, { Component } from 'react'
 import TemperatureSpot from './tempAnimation'
 import Longboard from './longboard'
-import posts from '../data/posts.json'
+import CrashButton from './crashButton'
+import Ghost from './Ghost'
 import { fetchPosts, fetchCode, fetchPics } from '../actions/index'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { getRandomSymbol } from '../forDataCrashing'
+import { getItems } from '../generics'
 import '../index.css'
+
+var _ = require('lodash');
 
 
 //TODO: fix scroll bar and media query bug in Chrome
 class InfoGrid extends Component {
+    state = {
+        textPosts: [],
+        code: [],
+        pics: [],
+        crashStart: null,
+        clickCount: 0
+    }
+    componentWillReceiveProps(nextProps) {
+        const { posts, code, pics } = nextProps
+        this.setState({
+            textPosts: getItems(posts),
+            code: getItems(code),
+            pics: getItems(pics)
+        })
+    }
     componentWillMount() {
-        this.props.fetchPosts(),
-        this.props.fetchCode(),
+        this.props.fetchPosts()
+        this.props.fetchCode()
         this.props.fetchPics()
     }
+    
     getStyle = (item) => {
         const bgColor = item.bg ? "#ffded8" : ""
         const padding = item.bg ? "2rem" : "0"
@@ -25,17 +46,110 @@ class InfoGrid extends Component {
         }
         return style
     }
+
+    mixTextSymbols = (data) => {
+        return _.forEach( data, (item) => {
+                _.forEach( item, (value, key) => {
+                    if ( key !== "order" && key !== "bg" && key !== "col") {
+                        let newValue = ""
+                        for( let i = 0; i < value.length; i++) {
+                            const shouldBechanged = Math.random()
+                            if (shouldBechanged < 0.7 || value[i] === " ") {
+                                newValue += value[i]
+                            } else {
+                                newValue += getRandomSymbol(value[i])
+                            }  
+                        }
+                        item[key] = newValue
+                    } else {
+                        item[key] = value
+                    }
+                })  
+            })  
+    }
+    mixCodeSymbols = (data) => {
+        return _.forEach( data, (item) => {
+            _.forEach( item, (value, key) => {
+                if ( key === "header" ) {
+                    let newValue = ""
+                    for( let i = 0; i < value.length; i++) {
+                        const shouldBechanged = Math.random()
+                        if (shouldBechanged < 0.7 || value[i] === " ") {
+                            newValue += value[i]
+                        } else {
+                            newValue += getRandomSymbol(value[i])
+                        }  
+                    }
+                    item[key] = newValue
+                } else if (key === "text") {
+                    _.forEach( item[key], (value, key2) => {
+                        let newValue = ""
+                        for( let i = 0; i < value.length; i++) {
+                            const shouldBechanged = Math.random()
+                            if (shouldBechanged < 0.7 || value[i] === " ") {
+                                newValue += value[i]
+                            } else {
+                                newValue += getRandomSymbol(value[i])
+                            }  
+                        }
+                        item[key][key2] = newValue
+                    }) 
+                } else {
+                    item[key] = value
+                }
+            })  
+        })  
+    }
+    handleMixSymbols = () => {
+        const { posts, code } = this.props
+        const textPosts = getItems(posts)
+        const codePosts = getItems(code)
+        let crashedTextPosts = _.cloneDeep(textPosts)
+        crashedTextPosts = this.mixTextSymbols(crashedTextPosts)
+
+        let crashedCode = _.cloneDeep(codePosts)
+        crashedCode = this.mixCodeSymbols(crashedCode)
+
+        this.setState({ textPosts: crashedTextPosts, code: crashedCode})
+    }
+    scramble = () => {
+        const { posts, code } = this.props
+        const textPosts = getItems(posts)
+        const codePosts = getItems(code)
+        this.timerID = setInterval(
+            () => {
+                this.handleMixSymbols()
+            },
+            100
+        );
+        setTimeout( () => {
+            clearInterval(this.timerID)
+            this.setState({ textPosts: textPosts, code: codePosts, crashStart: null })
+        }, 10000)
+
+    }
+    handleClick = () => {
+
+        const { crashStart } = this.state
+        if ( crashStart !== null ) {
+            //check if 10sek passed
+            const current = Date.now()
+            if ( current - crashStart < 10000 ) {
+                return
+            } else {
+                const newCrashStart = Date.now()
+                this.setState({crashStart: newCrashStart})
+                this.scramble()
+            }
+        } else {
+            const newCrashStart = Date.now()
+            this.setState({crashStart: newCrashStart})
+            this.scramble()
+        }
+        
+    }
     render() {
-        const textPosts = this.props.posts.map( item => {
-            return item.fields
-        })
-        const code = this.props.code.map( item => {
-            return item.fields
-        })
-        const pics = this.props.pics.map( item => {
-            return item.fields
-        })
-        ///
+        const { textPosts, code, pics, crashStart } = this.state
         const postList = textPosts.map( (item) => {
             const colNum = "col-" + item.col
             const style = this.getStyle(item)
@@ -49,6 +163,7 @@ class InfoGrid extends Component {
                 )
             }
             if ( item.quote ) {
+                style.color = "#ff6f56"
                 return (
                     <div className={colNum} 
                     style={style} key={item.order}>
@@ -65,8 +180,13 @@ class InfoGrid extends Component {
             
         })
         const codeList = code.map( item => {
+            const style = this.getStyle(item)
+            style.height = "32rem"
             return (
-                <div className="col-1" style={{background: "#ffded8", order: 2, height: "32rem", padding: "2rem"}}>
+                <div 
+                    className="col-1" 
+                    style={style}
+                    key={item.order}>
                     <h3>
                         const <span className="red-text">{item.header}</span> =&nbsp;
                         <pre>
@@ -91,14 +211,24 @@ class InfoGrid extends Component {
             <div className="flexbox wrap">
                 {postList}
                 {codeList}
-                {picList}
-                <TemperatureSpot />
-                <Longboard />
+                {picList}  
+                {
+                    crashStart === null ?
+                    <TemperatureSpot />   
+                    :
+                    <Ghost ghostClass="ghost" order={4} colNum={1} />
+                }
+                <CrashButton scramble={this.handleClick} />
+                {
+                    crashStart === null ?
+                    <Longboard />  
+                    :
+                    <Ghost ghostClass="horizontal-ghost" order={11} colNum={1} />
+                }    
             </div>
         )
     }
 }
-// export default InfoGrid
 
 function mapStateToProps(state) {
     return { 
@@ -115,3 +245,4 @@ function mapDispatchToProps(dispatch) {
     }
   }
 export default connect(mapStateToProps, mapDispatchToProps)(InfoGrid)
+

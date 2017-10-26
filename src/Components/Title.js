@@ -9,7 +9,7 @@ class Title extends Component {
         }
         return (
             <div className="title flexbox">
-                <div style={{maxWidth: "68rem"}} >
+                <div className="inner-title" style={{maxWidth: "68rem"}} >
                     <h2 style={style}>{this.props.title}</h2>
                 </div>
                 

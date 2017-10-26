@@ -6,13 +6,11 @@ export const FETCH_PROJECTS = 'FETCH_PROJECTS'
 export const FETCH_CODE = 'FETCH_CODE'
 export const FETCH_PICS = 'FETCH_PICS'
 export const FETCH_TEMP = 'FETCH_TEMP'
+export const FETCH_CONTACTS = 'FETCH_CONTACTS'
+export const FETCH_LOCATION = 'FETCH_LOCATION'
 
-const API_BASE_URL = 'https://cdn.contentful.com'
 const API_SPACE_ID = 'cczllbmg75ay'
 const API_KEY = 'c1782ea2b12077bbc6f35d39d322af845aff60a0486717208c9803b520c28d9b'
-const CITYID = 460413
-const COUNTRY = 'lv'
-const WEATHERAPI = 'd2c146bf9169f8e4f901367a77d51664'
 
 const client = contentful.createClient({
   space: API_SPACE_ID,
@@ -70,11 +68,36 @@ export function fetchPics() {
     payload: request
   }
 }
+export function fetchContacts() {
+  const request = client.getEntries({
+    'content_type': 'contacts'
+  })
+  .then(entries => {
+    return entries  
+  })
+  return {
+    type: FETCH_CONTACTS,
+    payload: request
+  }
+}
 
 export function fetchTemperature() {
-  const request = axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${CITYID}&units=metric&APPID=${WEATHERAPI}`);
+  const request = axios.get(`https://api.apixu.com/v1/current.json?key=49caf41d8bbb48da8ff175933171910&q=Daugavpils`);
   return {
     type: FETCH_TEMP,
+    payload: request
+  }
+}
+
+export function fetchLocation() {
+  const request = client.getEntries({
+    'content_type': 'location'
+  })
+  .then(entries => {
+    return entries  
+  })
+  return {
+    type: FETCH_LOCATION,
     payload: request
   }
 }
