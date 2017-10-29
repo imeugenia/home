@@ -3,6 +3,7 @@ import Title from './Title'
 import '../index.css'
 import { fetchProjects } from '../actions/index'
 import { connect } from 'react-redux'
+var _ = require('lodash');
 
 
 class Projects extends Component {
@@ -11,9 +12,10 @@ class Projects extends Component {
     }
     render() {
         const title = "My projects and experience"
-        const projects = this.props.projects.map( item => {
+        let projects = this.props.projects.map( item => {
             return item.fields
         })
+        projects = _.reverse(_.sortBy(projects, 'year'))
         return (
             <section>
                 <Title title={title}/>

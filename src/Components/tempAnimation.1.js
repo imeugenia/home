@@ -8,8 +8,8 @@ class TemperatureSpot extends Component {
         temperature: ""
     }
     componentWillReceiveProps(nextProps) {
-        const temperature = nextProps.temperature 
-            ? nextProps.temperature.temp_c
+        const temperature = nextProps.temperature? 
+            nextProps.temperature.temp_c
             : ""
         this.setState({
             temperature: temperature
@@ -18,19 +18,13 @@ class TemperatureSpot extends Component {
     componentWillMount() {
         this.props.fetchTemperature()
     }
-
-    renderRGBA = () => {
+    renderRGD = () => {
         const temperature = Math.round(this.state.temperature)
         const tempChangePoint = 5
-        let opacity = this.getOpacity()
-        opacity = opacity.toFixed(2)
-        const rgbString = ( temperature > tempChangePoint ) 
-            ? `rgba(255, 111, 86, ${opacity})` 
-            : `rgba(0, 21, 92, ${opacity})`
+        const rgbString = ( temperature > tempChangePoint ) ? "rgb(255, 111, 86)" : "rgb(0, 21, 92)"
         return rgbString
     }
-    
-    getOpacity = () => {
+    renderOpacity = () => {
         const maxTemp = 30
         const minTemp = -30
         const tempChangePoint = 5
@@ -50,22 +44,25 @@ class TemperatureSpot extends Component {
         return currentOpacity
     }
     render() {
-        const color = this.renderRGBA()
+        const temperature = Math.round(this.state.temperature)
+        const rgb = this.renderRGD()
+        const opacity = this.renderOpacity()
         return (
-            <div id="temp-bubble" className="col-1" style={{order: 4}}>
+            <div className="col-1" style={{order: 4}}>
+                <h4 style={{position: "absolute",  width: "200px"}}>It is {temperature}°C where I am now</h4>
                 <svg width='320' height='320' viewBox='-50 -50 320 320' xmlns='http://www.w3.org/2000/svg'>
 
                     <g id='Welcome' fill='none' fillRule='evenodd'>
                         <g id='Desktop-HD-Copy-11' transform='translate(-1104 -666)'>
                             <g id='Group-6' transform='translate(1067 640)'>
                                 <g id='Oval'>
-                                    <path fill={color} 
-                                    className='path' d={`M111.692195,234.790293 C184.41961,216.536386 223.413416,153.726077 223.237635,97.2311713 C223.061854,40.7362657 182.290704,-1.35033246 118.453967,0.0331407357 C54.6172308,1.41661393 5.97429755,19.9309175 0.463561686,97.2311713 C-5.04717418,174.531425 38.9647802,253.044199 111.692195,234.790293 Z`} />
+                                    <path fill={rgb} fillOpacity={opacity}
+                                    className='path' d={`M127.424919,265.34534 C200.759406,232.575561 263.060774,204.186898 252.91159,139.581548 C242.762405,74.9761979 196.122764,102.833329 127.424919,30.2630463 C58.7270734,-42.3072364 16.169606,24.1182093 1.93824743,139.581548 C-12.2931111,255.044886 54.0904309,298.115119 127.424919,265.34534 Z`} />
                                 </g>
                             </g>
                         </g>
                     </g>
-                </svg> 
+                </svg>
             </div>
            
         )
@@ -78,4 +75,3 @@ function mapStateToProps(state) {
     }
 }
 export default connect(mapStateToProps, {fetchTemperature})(TemperatureSpot)
-

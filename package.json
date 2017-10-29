@@ -26,5 +26,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://jevgenijazigisova.github.io/home/"
+  "homepage": "https://imeugenia.github.io/home/"
 }
