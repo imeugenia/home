@@ -12,8 +12,6 @@ import '../index.css'
 
 var _ = require('lodash');
 
-
-//TODO: fix scroll bar and media query bug in Chrome
 class InfoGrid extends Component {
     state = {
         textPosts: [],

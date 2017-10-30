@@ -49,10 +49,43 @@ class TemperatureSpot extends Component {
         
         return currentOpacity
     }
+    renderText = () => {
+        const temperature = Math.round(this.state.temperature)
+        let text = ""
+        if ( temperature <= -20 ) text = "It's bitter cold"
+        else if ( temperature > -20 && temperature <= -10 ) text = "It's freezing"
+        else if ( temperature > -10 && temperature <= 0 ) text = "It's cold"
+        else if ( temperature > 0 && temperature <= 10 ) text = "It's quite cool"
+        else if ( temperature > 10 && temperature <= 20 ) text = "It's almost warm"
+        else text = "It's lovely warm"
+        return text
+    }
+    renderTextColor = () => {
+        const temperature = Math.round(this.state.temperature)
+        const color = temperature > 5 ? "#ff6f56" : "#00155c"
+        return color
+    }
     render() {
+        const text = this.renderText();
+        const temperature = Math.round(this.state.temperature)
         const color = this.renderRGBA()
+        const textColor = this.renderTextColor()
         return (
-            <div id="temp-bubble" className="col-1" style={{order: 4}}>
+            <div 
+                id="temp-bubble" 
+                className="col-1" 
+                style={{order: 4, position: "relative", color: textColor}}
+            >
+                <h1 
+                    className="weather-text" 
+                    style={{opacity: 0.5}}>
+                    {temperature}°C
+                </h1>
+                <h4 
+                    className="weather-text" 
+                    style={{bottom: 0}}>
+                    {text} in my hometown
+                </h4>
                 <svg width='320' height='320' viewBox='-50 -50 320 320' xmlns='http://www.w3.org/2000/svg'>
 
                     <g id='Welcome' fill='none' fillRule='evenodd'>

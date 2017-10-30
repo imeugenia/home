@@ -1,9 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700');
-/* 
-red: #ff6f56
-pink: #FFE7E3
-darkpink: #ffded8
-blue: #00155c */
 
 * {
   box-sizing: border-box;
@@ -25,6 +20,9 @@ pre {
 }
 h1, h2, h3, h4 {
   font-weight: 500;
+}
+h1 {
+  font-size: 8rem;
 }
 h2 {
   font-size: 2.6rem;
@@ -56,6 +54,11 @@ p {
   text-transform: uppercase;
   width: 10rem;
 }
+.weather-text {
+  position: absolute;
+  width: 28rem
+}
+
 
 /* Layout */
 [class*="col"] {
@@ -129,9 +132,7 @@ header .col-1 {
 #wheel2 {
   right:7rem;
 }
-#temp-bubble{
-  display:none;
-}
+
 /* Animation */
 @keyframes wheelsAnimation {
   from {
