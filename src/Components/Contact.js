@@ -46,7 +46,7 @@ class Contact extends Component {
     }
 }
 
-// export default Contact
+
 function mapStateToProps(state) {
     return { 
         contacts: state.data.contacts
