@@ -9,7 +9,7 @@
     "axios": "^0.16.2",
     "contentful": "^4.6.1",
     "gh-pages": "^1.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.20",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-icons": "^2.2.7",
