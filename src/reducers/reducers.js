@@ -1,10 +1,25 @@
-import { FETCH_POSTS, FETCH_PROJECTS, FETCH_CODE, FETCH_PICS, FETCH_TEMP, FETCH_CONTACTS, FETCH_LOCATION } from '../actions/index';
+import {
+  FETCH_POSTS,
+  FETCH_PROJECTS,
+  FETCH_CODE,
+  FETCH_PICS,
+  FETCH_TEMP,
+  FETCH_CONTACTS,
+  FETCH_LOCATION,
+} from "../actions/index";
 
+const INITIAL_STATE = {
+  posts: [],
+  projects: [],
+  code: [],
+  pics: [],
+  temperature: {},
+  contacts: [],
+  location: [],
+};
 
-const INITIAL_STATE = { posts: [], projects: [], code: [], pics: [], temperature: {}, contacts: [], location: []};
-
-export default function(state = INITIAL_STATE, action) {
-  switch(action.type) {
+export default function (state = INITIAL_STATE, action) {
+  switch (action.type) {
     case FETCH_POSTS:
       return { ...state, posts: action.payload.items };
     case FETCH_PROJECTS:
@@ -17,8 +32,6 @@ export default function(state = INITIAL_STATE, action) {
       return { ...state, contacts: action.payload.items };
     case FETCH_LOCATION:
       return { ...state, location: action.payload.items };
-    case FETCH_TEMP:
-      return { ...state, temperature: action.payload.data.current };
     default:
       return state;
   }
