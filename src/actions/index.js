@@ -1,4 +1,3 @@
-import axios from "axios";
 const contentful = require("contentful");
 
 export const FETCH_POSTS = "FETCH_POSTS";
