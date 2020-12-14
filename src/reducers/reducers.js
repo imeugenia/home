@@ -3,7 +3,6 @@ import {
   FETCH_PROJECTS,
   FETCH_CODE,
   FETCH_PICS,
-  FETCH_TEMP,
   FETCH_CONTACTS,
   FETCH_LOCATION,
 } from "../actions/index";
