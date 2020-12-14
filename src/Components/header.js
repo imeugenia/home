@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
-import Symbol from '../media/happy-ghost.svg'
-import '../index.css'
+import React, { Component } from "react";
+import "../index.css";
 
 const HEADERDATA = {
-  textPart1: 'I am Eugenia.',
-  textPart2: 'A web engineer,',
-  textPart3: 'UI design enthusiast.'
-}
+  textPart1: "I am Eugenia.",
+  textPart2: "A web engineer,",
+  textPart3: "UI design enthusiast.",
+};
 class Header extends Component {
   render() {
     return (
@@ -22,8 +21,8 @@ class Header extends Component {
           </h2>
         </div>
       </header>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;
