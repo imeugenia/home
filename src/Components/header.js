@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Symbol from "../media/happy-ghost.svg";
 import "../index.css";
 
 const HEADERDATA = {
