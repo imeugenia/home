@@ -5,6 +5,9 @@
   "devDependencies": {
     "react-scripts": "4.0.1"
   },
+  "engines": {
+    "node": ">= 14.5.0"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "contentful": "^4.6.1",
