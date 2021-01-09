@@ -7,9 +7,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getRandomSymbol } from "../forDataCrashing";
 import { getItems } from "../generics";
+import cloneDeep from "lodash/cloneDeep";
 import "../index.css";
-
-var _ = require("lodash");
 
 class InfoGrid extends Component {
   state = {
@@ -45,8 +44,8 @@ class InfoGrid extends Component {
   };
 
   mixTextSymbols = (data) => {
-    return _.forEach(data, (item) => {
-      _.forEach(item, (value, key) => {
+    return data.map((item) => {
+      Object.entries(item).forEach(([key, value]) => {
         if (key !== "order" && key !== "bg" && key !== "col") {
           let newValue = "";
           for (let i = 0; i < value.length; i++) {
@@ -62,11 +61,13 @@ class InfoGrid extends Component {
           item[key] = value;
         }
       });
+
+      return item;
     });
   };
   mixCodeSymbols = (data) => {
-    return _.forEach(data, (item) => {
-      _.forEach(item, (value, key) => {
+    return data.map((item) => {
+      Object.entries(item).forEach(([key, value]) => {
         if (key === "header") {
           let newValue = "";
           for (let i = 0; i < value.length; i++) {
@@ -79,7 +80,7 @@ class InfoGrid extends Component {
           }
           item[key] = newValue;
         } else if (key === "text") {
-          _.forEach(item[key], (value, key2) => {
+          Object.entries(item[key]).forEach(([key2, value]) => {
             let newValue = "";
             for (let i = 0; i < value.length; i++) {
               const shouldBechanged = Math.random();
@@ -95,16 +96,18 @@ class InfoGrid extends Component {
           item[key] = value;
         }
       });
+
+      return item;
     });
   };
   handleMixSymbols = () => {
     const { posts, code } = this.props;
     const textPosts = getItems(posts);
     const codePosts = getItems(code);
-    let crashedTextPosts = _.cloneDeep(textPosts);
+    let crashedTextPosts = cloneDeep(textPosts);
     crashedTextPosts = this.mixTextSymbols(crashedTextPosts);
 
-    let crashedCode = _.cloneDeep(codePosts);
+    let crashedCode = cloneDeep(codePosts);
     crashedCode = this.mixCodeSymbols(crashedCode);
 
     this.setState({ textPosts: crashedTextPosts, code: crashedCode });
