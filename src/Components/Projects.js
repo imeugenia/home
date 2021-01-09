@@ -3,7 +3,7 @@ import Title from "./Title";
 import "../index.css";
 import { fetchProjects } from "../actions/index";
 import { connect } from "react-redux";
-var _ = require("lodash");
+import orderBy from "lodash/orderBy";
 
 class Projects extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class Projects extends Component {
     let projects = this.props.projects.map((item) => {
       return item.fields;
     });
-    projects = _.reverse(_.sortBy(projects, "year"));
+    projects = orderBy(projects, ["year"], ["desc"]);
     return (
       <section>
         <Title title={title} />
