@@ -19,18 +19,18 @@ class InfoGrid extends Component {
     crashStart: null,
     clickCount: 0,
   };
-  componentWillReceiveProps(nextProps) {
-    const { posts, code, pics } = nextProps;
+
+  async componentDidMount() {
+    await this.props.fetchPosts();
+    await this.props.fetchCode();
+    await this.props.fetchPics();
+
+    const { posts, code, pics } = this.props;
     this.setState({
       textPosts: getItems(posts),
       code: getItems(code),
       pics: getItems(pics),
     });
-  }
-  componentWillMount() {
-    this.props.fetchPosts();
-    this.props.fetchCode();
-    this.props.fetchPics();
   }
 
   getStyle = (item) => {
