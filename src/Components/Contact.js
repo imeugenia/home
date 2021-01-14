@@ -44,6 +44,14 @@ class Contact extends Component {
                       Email
                     </span>
                   </a>
+                  <a target="_blank" href="https://imeugenia.medium.com/">
+                    <span
+                      className="like-h4"
+                      style={{ color: "#ff6f56", marginRight: "2rem" }}
+                    >
+                      Medium
+                    </span>
+                  </a>
                 </div>
               </div>
             </div>
