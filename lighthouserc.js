@@ -7,7 +7,15 @@ module.exports = {
     assert: {
       preset: "lighthouse:recommended",
       assertions: {
-        "categories:accessibility": ["warn", { minScore: 1 }],
+        "color-contrast": "off",
+        "external-anchors-use-rel-noopener": "off",
+        "heading-order": "off",
+        "maskable-icon": "off",
+        "meta-description": "off",
+        "non-composited-animations": "off",
+        "is-on-https": "off",
+        "legacy-javascript": "off",
+        "uses-webp-images": "off",
       },
     },
     upload: {
