@@ -5,8 +5,9 @@ module.exports = {
       target: "temporary-public-storage",
     },
     assert: {
+      preset: "lighthouse:recommended",
       assertions: {
-        "categories:seo": "warn",
+        "categories:accessibility": ["warn", { minScore: 1 }],
       },
     },
     upload: {
