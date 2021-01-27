@@ -16,6 +16,13 @@ module.exports = {
         "is-on-https": "off",
         "legacy-javascript": "off",
         "uses-webp-images": "off",
+        "resource-summary:third-party:size": [
+          "error",
+          { maxNumericValue: 5000 },
+        ],
+        "resource-summary:font:size": ["error", { maxNumericValue: 9000 }],
+        "resource-summary:script:size": ["error", { maxNumericValue: 40000 }],
+        "resource-summary:total:size": ["error", { maxNumericValue: 170000 }],
       },
     },
     upload: {
