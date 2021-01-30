@@ -15,6 +15,7 @@ const API_KEY =
 const client = contentful.createClient({
   space: API_SPACE_ID,
   accessToken: API_KEY,
+  headers: { "Cache-Control": "max-age=1, stale-while-revalidate=59" },
 });
 
 export function fetchPosts() {
