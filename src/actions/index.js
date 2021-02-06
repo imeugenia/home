@@ -1,4 +1,9 @@
 const contentful = require("contentful");
+import posts from "../data/posts.json";
+import code from "../data/code.json";
+import contacts from "../data/contacts.json";
+import pics from "../data/pics.json";
+import projects from "../data/projects.json";
 
 export const FETCH_POSTS = "FETCH_POSTS";
 export const FETCH_PROJECTS = "FETCH_PROJECTS";
@@ -6,7 +11,6 @@ export const FETCH_CODE = "FETCH_CODE";
 export const FETCH_PICS = "FETCH_PICS";
 export const FETCH_TEMP = "FETCH_TEMP";
 export const FETCH_CONTACTS = "FETCH_CONTACTS";
-export const FETCH_LOCATION = "FETCH_LOCATION";
 
 const API_SPACE_ID = "cczllbmg75ay";
 const API_KEY =
@@ -18,84 +22,35 @@ const client = contentful.createClient({
 });
 
 export function fetchPosts() {
-  const request = client
-    .getEntries({
-      content_type: "card",
-    })
-    .then((entries) => {
-      return entries;
-    });
   return {
     type: FETCH_POSTS,
-    payload: request,
+    payload: posts,
   };
 }
 
 export function fetchProjects() {
-  const request = client
-    .getEntries({
-      content_type: "projects",
-    })
-    .then((entries) => {
-      return entries;
-    });
   return {
     type: FETCH_PROJECTS,
-    payload: request,
+    payload: projects,
   };
 }
 
 export function fetchCode() {
-  const request = client
-    .getEntries({
-      content_type: "code",
-    })
-    .then((entries) => {
-      return entries;
-    });
   return {
     type: FETCH_CODE,
-    payload: request,
+    payload: code,
   };
 }
 
 export function fetchPics() {
-  const request = client
-    .getEntries({
-      content_type: "pics",
-    })
-    .then((entries) => {
-      return entries;
-    });
   return {
     type: FETCH_PICS,
-    payload: request,
+    payload: pics,
   };
 }
 export function fetchContacts() {
-  const request = client
-    .getEntries({
-      content_type: "contacts",
-    })
-    .then((entries) => {
-      return entries;
-    });
   return {
     type: FETCH_CONTACTS,
-    payload: request,
-  };
-}
-
-export function fetchLocation() {
-  const request = client
-    .getEntries({
-      content_type: "location",
-    })
-    .then((entries) => {
-      return entries;
-    });
-  return {
-    type: FETCH_LOCATION,
-    payload: request,
+    payload: contacts,
   };
 }
