@@ -196,7 +196,11 @@ class InfoGrid extends Component {
       const style = this.getStyle(item);
       return (
         <div className={colNum} style={style} key={item.order}>
-          <img src={item.link.fields.file.url} alt={item.alt} />
+          <picture>
+            <source srcSet={item.link.fields.file.url + "?fm=webp"} />
+            <source srcSet={item.link.fields.file.url + "?fm=jpg"} />
+            <img src={item.link.fields.file.url} alt="" />
+          </picture>
         </div>
       );
     });
