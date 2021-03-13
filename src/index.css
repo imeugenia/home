@@ -10,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto Mono", monospace;
+  font-display: swap;
   color: #00155c;
   background-color: #ffe7e3;
 }
