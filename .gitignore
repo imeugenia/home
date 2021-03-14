@@ -26,3 +26,4 @@ package-lock.json
 .lighthouseci
 
 ./src/data
+src/data/posts.json
